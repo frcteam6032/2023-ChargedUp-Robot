@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 //import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 //import edu.wpi.first.wpilibj2.command.button.Button;
@@ -58,8 +59,8 @@ public class RobotContainer {
     // Back button zeros the gyroscope
     new Trigger(m_controller::getBButton)
             // No requirements because we don't need to interrupt anything
-            //FIXME I think zeroGyroscope should be a Command in the framework -DMM
-            .onTrue(m_drivetrainSubsystem.zeroGyroscope());
+            //FIXME Not Tested Yet -DMM
+            .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
   }
 
   /**
