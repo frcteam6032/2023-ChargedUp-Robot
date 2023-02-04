@@ -47,6 +47,10 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+
+    // Intialize Gyro tab
+    m_drivetrainSubsystem.make_gyro_shuffle();
+
   }
 
   /**
