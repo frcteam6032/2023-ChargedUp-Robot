@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -79,7 +78,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void update_gyro_shuffle(){
         //GyroTab.add("Yaw",m_pigeon.getYaw());
-        YawEntry.setDouble(System.currentTimeMillis());
+        YawEntry.setDouble((double)System.currentTimeMillis());
   }
 
   public void make_gyro_shuffle(){
