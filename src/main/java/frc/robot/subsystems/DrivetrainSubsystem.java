@@ -161,6 +161,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     // FIXED Remove if you are not using a Pigeon
     m_pigeon.setYaw(0.0);
 
+    //System.out.println("Zero Gyro Method was called");
+
     // FIXED Uncomment if you are using a NavX
 //    m_navx.zeroYaw();
   }

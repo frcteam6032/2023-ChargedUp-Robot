@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 //import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.Button;
+//import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
@@ -55,9 +57,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Back button zeros the gyroscope
-    new Button(m_controller::getBButton)
+    new Trigger(m_controller::getBButton)
             // No requirements because we don't need to interrupt anything
-            .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
+            //FIXME Not Tested Yet -DMM
+            .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
+            // Lambda expression are function that return a vale, calls a different function, or can call a method. They do not accept conditionals such as "if" statements unless braces are used. example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); if you are farmilar with arrow functions in other languages (SUch as Javascript) which have a syntax like so: param => expression (You can also use braces to to more complex operations). Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
   }
 
   /**
