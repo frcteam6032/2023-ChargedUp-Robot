@@ -83,8 +83,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void make_gyro_shuffle(){
-
+        LiveGyroTab.addNumber("Live Yaw", m_pigeon::getYaw);
   }
+
+  public ShuffleboardTab LiveGyroTab = Shuffleboard.getTab("Live Gyro Tab");
+  
 
   // These are our modules. We initialize them in the constructor.
   private final SwerveModule m_frontLeftModule;
