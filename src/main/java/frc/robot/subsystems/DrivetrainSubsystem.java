@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.*;
@@ -74,11 +74,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public ShuffleboardTab GyroTab = Shuffleboard.getTab("Gyro Tab");
   private GenericEntry YawEntry =
-        GyroTab.add("Yaw", 0).getEntry();
+        GyroTab.add("Yaw", 42).getEntry();
 
   public void update_gyro_shuffle(){
         //GyroTab.add("Yaw",m_pigeon.getYaw());
-        YawEntry.setDouble((double)System.currentTimeMillis());
+        //YawEntry.setDouble((double)System.currentTimeMillis());
+        YawEntry.setDouble(m_pigeon.getYaw());
   }
 
   public void make_gyro_shuffle(){

@@ -63,7 +63,7 @@ public class RobotContainer {
     // Back button zeros the gyroscope
     new Trigger(m_controller::getBButton)
             // No requirements because we don't need to interrupt anything
-            //FIXME Not Tested Yet -DMM
+
             .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
             // Lambda expression are function that return a vale, calls a different function, or can call a method. They do not accept conditionals such as "if" statements unless braces are used. example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); if you are farmilar with arrow functions in other languages (SUch as Javascript) which have a syntax like so: param => expression (You can also use braces to to more complex operations). Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
   }
