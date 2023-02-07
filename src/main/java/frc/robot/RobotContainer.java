@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DefaultDriveCommand;
 
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.Intake_Pickup;
 import frc.robot.commands.Intake_Eject;
 
@@ -32,7 +32,7 @@ public class RobotContainer {
 
   private final XboxController m_controller = new XboxController(0);
   
-  public final Intake m_intake = new Intake();
+  public final IntakeSubsystem m_intake = new IntakeSubsystem();
 
   private final Command IntakePickupCommand = new Intake_Pickup(m_intake);
   private final Command IntakeEjectCommand = new Intake_Eject(m_intake);
