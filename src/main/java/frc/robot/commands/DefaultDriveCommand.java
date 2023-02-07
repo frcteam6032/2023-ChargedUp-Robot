@@ -28,9 +28,6 @@ public class DefaultDriveCommand extends CommandBase {
     @Override
     public void execute() {
         
-        // Call the gyro dashboard
-        m_drivetrainSubsystem.update_gyro_shuffle();
-        
         m_drivetrainSubsystem.drive(
             
                 // Field Oriented Drive
