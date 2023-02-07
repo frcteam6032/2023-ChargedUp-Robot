@@ -56,12 +56,14 @@ public class Intake_Pickup extends CommandBase {
     @Override
     public void execute() {
         System.out.println("Set the Motor Speed to X (Pickup)");
+        m_intake.set_speed(0.01);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         System.out.println("Stop the Motor");
+        m_intake.set_speed(0);
     }
 
     // Returns true when the command should end.
