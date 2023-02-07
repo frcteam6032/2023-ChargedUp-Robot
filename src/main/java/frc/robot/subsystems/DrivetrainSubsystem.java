@@ -17,6 +17,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.*;
@@ -151,6 +152,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
             BACK_RIGHT_MODULE_STEER_ENCODER,
             BACK_RIGHT_MODULE_STEER_OFFSET
     );
+
+    // Add the Gyroscope readings to the Shuffleboard DriveTrain Tab
+    ShuffleboardLayout gyro_layout = tab.getLayout("Pigeon 2.0 Gyro", BuiltInLayouts.kList)
+        .withSize(2, 4)
+        .withPosition(8, 0);
+    gyro_layout.addNumber("Roll", m_pigeon::getRoll);
+    gyro_layout.addNumber("Pitch", m_pigeon::getPitch);
+    gyro_layout.addNumber("Yaw", m_pigeon::getYaw);
   }
 
   /**
