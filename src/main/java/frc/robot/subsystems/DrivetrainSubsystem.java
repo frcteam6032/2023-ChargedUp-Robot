@@ -17,7 +17,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -70,24 +70,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   // FIXED Remove if you are using a Pigeon
   private final Pigeon2 m_pigeon = new Pigeon2(DRIVETRAIN_PIGEON_ID);
   // FIXED Uncomment if you are using a NavX
-//  private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connected over MXP
-
-  public ShuffleboardTab GyroTab = Shuffleboard.getTab("Gyro Tab");
-  private GenericEntry YawEntry =
-        GyroTab.add("Yaw", 42).getEntry();
-
-  public void update_gyro_shuffle(){
-        //GyroTab.add("Yaw",m_pigeon.getYaw());
-        //YawEntry.setDouble((double)System.currentTimeMillis());
-        YawEntry.setDouble(m_pigeon.getYaw());
-  }
-
-  public void make_gyro_shuffle(){
-        LiveGyroTab.addNumber("Live Yaw", m_pigeon::getYaw);
-  }
-
-  public ShuffleboardTab LiveGyroTab = Shuffleboard.getTab("Live Gyro Tab");
-  
+  // private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connected over MXP  
 
   // These are our modules. We initialize them in the constructor.
   private final SwerveModule m_frontLeftModule;
@@ -170,6 +153,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
             BACK_RIGHT_MODULE_STEER_ENCODER,
             BACK_RIGHT_MODULE_STEER_OFFSET
     );
+
+    // Add the Gyroscope readings to the Shuffleboard DriveTrain Tab
+    ShuffleboardLayout gyro_layout = tab.getLayout("Pigeon 2.0 Gyro", BuiltInLayouts.kList)
+        .withSize(2, 4)
+        .withPosition(8, 0);
+    gyro_layout.addNumber("Roll", m_pigeon::getRoll);
+    gyro_layout.addNumber("Pitch", m_pigeon::getPitch);
+    gyro_layout.addNumber("Yaw", m_pigeon::getYaw);
   }
 
   /**
