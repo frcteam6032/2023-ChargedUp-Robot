@@ -58,7 +58,7 @@ motorController2 = new PWMSparkMax(1);
     public void set_speed(double value){
         motorController1.set(value);
         motorController2.set(value);
-        System.out.println("Speed Set to Value");
+        //System.out.println("Speed Set to Value");
     }
 
     @Override
