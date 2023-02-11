@@ -55,8 +55,14 @@ public class ArmRaise extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
+        if (m_arm.getAngle() < 50) {
+            m_arm.set_speed(0);
+        }
+        else {
         System.out.println("Set the Motor Speed to +0.1 (Pickup)");
         m_arm.set_speed(0.1);
+        }
     }
 
     // Called once the command ends or is interrupted.
