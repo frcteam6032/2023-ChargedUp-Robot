@@ -50,15 +50,18 @@ public class RobotContainer {
   public RobotContainer() {
     // Set up the default command for the drivetrain.
     // The controls are for field-oriented driving:
+
+    // Originally use right stick FWD/BACK/Left/Right, Left Stick Pivot
+    // Now use left stick FWD/BACK/Left/Right, Right Stick Pivot
   
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
             m_drivetrainSubsystem,
             // Forwards And Back
-            () -> -modifyAxis(m_controller.getRightY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(m_controller.getLeftY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
             // Left & Right
-            () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
             // Pivot
-            () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
 
     // Configure the button bindings
@@ -83,14 +86,14 @@ public class RobotContainer {
     // Set Button for Intake Pickup
     new Trigger(m_controller::getAButton).whileTrue(IntakePickupCommand);
 
-    // Set Button for Intake Pickup
+    // Set Button for Intake Eject
     new Trigger(m_controller::getXButton).whileTrue(IntakeEjectCommand);
 
-
-     // Set Button for Intake Pickup
+     // Set Button for Arm Rais
      new Trigger(m_controller::getLeftBumper).whileTrue(ArmRaiseCommand);
 
-     // Set Button for Intake Pickup
+     // Set Button for Arm Lower
+
      new Trigger(m_controller::getRightBumper).whileTrue(ArmLowerCommand);
 
   }
