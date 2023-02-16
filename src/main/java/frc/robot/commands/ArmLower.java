@@ -61,7 +61,6 @@ public class ArmLower extends CommandBase {
             m_arm.set_speed(0);
         }
         else {
-        System.out.println("Set the Motor Speed to -0.1 (Eject)");
         m_arm.set_speed(-0.1);
         }
     }
@@ -69,7 +68,6 @@ public class ArmLower extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Stop the Motor");
         m_arm.set_speed(0);
     }
 
