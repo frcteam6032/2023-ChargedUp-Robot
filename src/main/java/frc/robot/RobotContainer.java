@@ -14,7 +14,11 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 //import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DefaultDriveCommand;
+
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.commands.Intake_Pickup;
+import frc.robot.commands.Intake_Eject;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,6 +31,11 @@ public class RobotContainer {
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
   private final XboxController m_controller = new XboxController(0);
+  
+  public final IntakeSubsystem m_intake = new IntakeSubsystem();
+
+  private final Command IntakePickupCommand = new Intake_Pickup(m_intake);
+  private final Command IntakeEjectCommand = new Intake_Eject(m_intake);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -59,12 +68,20 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Back button zeros the gyroscope
+    // B button zeros the gyroscope
     new Trigger(m_controller::getBButton)
             // No requirements because we don't need to interrupt anything
             
             .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
-            // Lambda expression are function that return a vale, calls a different function, or can call a method. They do not accept conditionals such as "if" statements unless braces are used. example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); if you are farmilar with arrow functions in other languages (SUch as Javascript) which have a syntax like so: param => expression (You can also use braces to to more complex operations). Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
+            
+    // Lambda expression are function that return a vale, calls a different function, or can call a method. They do not accept conditionals such as "if" statements unless braces are used. example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); if you are farmilar with arrow functions in other languages (SUch as Javascript) which have a syntax like so: param => expression (You can also use braces to to more complex operations). Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
+    
+    // Set Button for Intake Pickup
+    new Trigger(m_controller::getAButton).whileTrue(IntakePickupCommand);
+
+    // Set Button for Intake Pickup
+    new Trigger(m_controller::getXButton).whileTrue(IntakeEjectCommand);
+
   }
 
   /**
