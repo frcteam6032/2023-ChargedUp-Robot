@@ -19,6 +19,9 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.Intake_Pickup;
 import frc.robot.commands.Intake_Eject;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.commands.ArmLower;
+import frc.robot.commands.ArmRaise;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -33,9 +36,13 @@ public class RobotContainer {
   private final XboxController m_controller = new XboxController(0);
   
   public final IntakeSubsystem m_intake = new IntakeSubsystem();
+  public final ArmSubsystem m_arm = new ArmSubsystem();
+
 
   private final Command IntakePickupCommand = new Intake_Pickup(m_intake);
   private final Command IntakeEjectCommand = new Intake_Eject(m_intake);
+  private final Command ArmRaiseCommand = new ArmRaise(m_arm);
+  private final Command ArmLowerCommand = new ArmLower(m_arm);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -79,8 +86,14 @@ public class RobotContainer {
     // Set Button for Intake Pickup
     new Trigger(m_controller::getAButton).whileTrue(IntakePickupCommand);
 
-    // Set Button for Intake Pickup
+    // Set Button for Intake Eject
     new Trigger(m_controller::getXButton).whileTrue(IntakeEjectCommand);
+
+     // Set Button for Arm Rais
+     new Trigger(m_controller::getLeftBumper).whileTrue(ArmRaiseCommand);
+
+     // Set Button for Arm Lower
+     new Trigger(m_controller::getRightBumper).whileTrue(ArmLowerCommand);
 
   }
 
