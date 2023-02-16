@@ -93,6 +93,7 @@ public class RobotContainer {
      new Trigger(m_controller::getLeftBumper).whileTrue(ArmRaiseCommand);
 
      // Set Button for Arm Lower
+
      new Trigger(m_controller::getRightBumper).whileTrue(ArmLowerCommand);
 
   }
