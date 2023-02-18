@@ -86,13 +86,14 @@ public class RobotContainer {
     // Set Button for Intake Pickup
     new Trigger(m_controller::getAButton).whileTrue(IntakePickupCommand);
 
-    // Set Button for Intake Eject
+    // Set Button for Intake Pickup
     new Trigger(m_controller::getXButton).whileTrue(IntakeEjectCommand);
 
-     // Set Button for Arm Rais
+
+     // Set Button for Intake Pickup
      new Trigger(m_controller::getLeftBumper).whileTrue(ArmRaiseCommand);
 
-     // Set Button for Arm Lower
+     // Set Button for Intake Pickup
      new Trigger(m_controller::getRightBumper).whileTrue(ArmLowerCommand);
 
   }

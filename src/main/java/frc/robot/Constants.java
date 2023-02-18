@@ -47,4 +47,6 @@ public final class Constants {
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 5; // FIXED Set back right steer motor ID
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 9; // FIXED Set back right steer encoder ID
     public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(103.53515615626065); // FIXED Measure and set back right steer offset
+    public static final int RIGHT_ARM_SPARKMAX_CAN_ID = 14; // FIXED Set back right steer encoder ID
+    public static final int LEFT_ARM_SPARKMAX_CAN_ID = 15; // FIXED Set back right steer encoder ID
 }
