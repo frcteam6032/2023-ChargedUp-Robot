@@ -56,19 +56,31 @@ public class ArmRaise extends CommandBase {
     @Override
     public void execute() {
 
-        if (m_arm.getAngle() < 50) {
+        
+         //   m_arm.set_speed(0);
+        
+       
+        m_arm.set_speed(0.3);
+        
+
+        /*
+         * 
+         * 
+         *   if (m_arm.getAngle() < 50) {
             m_arm.set_speed(0);
         }
         else {
         System.out.println("Set the Motor Speed to +0.1 (Pickup)");
-        m_arm.set_speed(0.1);
+        m_arm.set_speed(0.6);
         }
+         * 
+         * 
+         */
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Stop the Motor");
         m_arm.set_speed(0);
     }
 

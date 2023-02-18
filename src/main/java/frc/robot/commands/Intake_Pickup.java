@@ -55,14 +55,12 @@ public class Intake_Pickup extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        System.out.println("Set the Motor Speed to +0.1 (Pickup)");
-        m_intake.set_speed(0.1);
+        m_intake.set_speed(0.35);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Stop the Motor");
         m_intake.set_speed(0);
     }
 

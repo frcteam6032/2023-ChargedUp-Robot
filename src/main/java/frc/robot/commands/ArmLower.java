@@ -57,19 +57,26 @@ public class ArmLower extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (m_arm.getAngle() > 120) {
+      
+        m_arm.set_speed(-0.3);
+        /*
+         * 
+         * 
+         *  if (m_arm.getAngle() > 120) {
             m_arm.set_speed(0);
         }
         else {
         System.out.println("Set the Motor Speed to -0.1 (Eject)");
-        m_arm.set_speed(-0.1);
+        m_arm.set_speed(-0.6);
         }
+         * 
+         * 
+         */
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Stop the Motor");
         m_arm.set_speed(0);
     }
 
