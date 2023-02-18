@@ -62,7 +62,7 @@ private DutyCycleEncoder m_DutyCycleEncoder;
     
 
         motorController4 = new CANSparkMax(15, MotorType.kBrushless);
-        motorController4.setInverted(true);
+        motorController4.setInverted(false);
         motorController3.follow(motorController4);
 // motorController3 = new PWMSparkMax(2);
 // addChild("Motor Controller 3",motorController3);
