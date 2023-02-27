@@ -57,7 +57,7 @@ public class ArmRaise extends CommandBase {
     public void execute() {
 
         
-         //   m_arm.set_speed(0);
+
         
        
         m_arm.set_speed(0.3);
