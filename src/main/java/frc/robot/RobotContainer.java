@@ -23,6 +23,10 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.ArmLower;
 import frc.robot.commands.ArmRaise;
 
+
+
+
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -34,7 +38,7 @@ public class RobotContainer {
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
   private final XboxController m_controller = new XboxController(0);
-  
+  private final XboxController m_controller2 = new XboxController(1);
   public final IntakeSubsystem m_intake = new IntakeSubsystem();
   public final ArmSubsystem m_arm = new ArmSubsystem();
 
@@ -43,6 +47,7 @@ public class RobotContainer {
   private final Command IntakeEjectCommand = new Intake_Eject(m_intake);
   private final Command ArmRaiseCommand = new ArmRaise(m_arm);
   private final Command ArmLowerCommand = new ArmLower(m_arm);
+  
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -66,6 +71,7 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+    
   }
 
   /**
@@ -75,7 +81,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // B button zeros the gyroscope
+    // X button zeros the gyroscope
     new Trigger(m_controller::getBButton)
             // No requirements because we don't need to interrupt anything
             
@@ -84,17 +90,19 @@ public class RobotContainer {
     // Lambda expression are function that return a vale, calls a different function, or can call a method. They do not accept conditionals such as "if" statements unless braces are used. example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); if you are farmilar with arrow functions in other languages (SUch as Javascript) which have a syntax like so: param => expression (You can also use braces to to more complex operations). Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
     
     // Set Button for Intake Pickup
-    new Trigger(m_controller::getAButton).whileTrue(IntakePickupCommand);
-
+    new Trigger(m_controller2::getXButton).whileTrue(IntakePickupCommand);
+    //getXButton
     // Set Button for Intake Pickup
-    new Trigger(m_controller::getXButton).whileTrue(IntakeEjectCommand);
+    new Trigger(m_controller2::getBButton).whileTrue(IntakeEjectCommand);
 
 
-     // Set Button for Intake Pickup
-     new Trigger(m_controller::getLeftBumper).whileTrue(ArmRaiseCommand);
+ 
 
-     // Set Button for Intake Pickup
-     new Trigger(m_controller::getRightBumper).whileTrue(ArmLowerCommand);
+     new Trigger(m_controller2::getRightBumper).whileTrue(ArmRaiseCommand);
+
+     new Trigger(m_controller2::getLeftBumper).whileTrue(ArmLowerCommand);
+
+    
 
   }
 
@@ -104,6 +112,13 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+
+
+
+
+
+
+    
     // An ExampleCommand will run in autonomous
     return new InstantCommand();
   }
