@@ -8,7 +8,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
+
+import javax.crypto.NullCipher;
+
 import com.ctre.phoenix.sensors.Pigeon2;
 //import com.ctre.phoenix.sensors.PigeonIMU;
 import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
@@ -24,6 +28,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.DrivetrainSubsystem;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -210,6 +216,23 @@ m_backRightModule = Mk4SwerveModuleHelper.createNeo(
 
     // All stuff goes here 
    
+
+
+// Change from null to something that will make it work
+ final DrivetrainSubsystem m_DrivetrainSubsystem = null;
+ final int DRIVETRAIN_PIGEON_ID = 20; // FIXED Set Pigeon ID
+
+  final Pigeon2 m_pigeon = new Pigeon2(DRIVETRAIN_PIGEON_ID);
+
+
+  m_DrivetrainSubsystem.drive(
+  ChassisSpeeds.fromFieldRelativeSpeeds(0, 0, 0.5,  m_DrivetrainSubsystem.getGyroscopeRotation())
+ );
+
+
+
+
+
   }
 
   @Override
