@@ -20,6 +20,8 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+
+
 import static frc.robot.Constants.*;
 
 public class DrivetrainSubsystem extends SubsystemBase {
@@ -68,6 +70,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   // cause the angle reading to increase until it wraps back over to zero.
   // FIXED Remove if you are using a Pigeon
   private final Pigeon2 m_pigeon = new Pigeon2(DRIVETRAIN_PIGEON_ID);
+
   // FIXED Uncomment if you are using a NavX
 //  private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connected over MXP
 
@@ -160,6 +163,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     gyro_layout.addNumber("Roll", m_pigeon::getRoll);
     gyro_layout.addNumber("Pitch", m_pigeon::getPitch);
     gyro_layout.addNumber("Yaw", m_pigeon::getYaw);
+
+
+   
+
   }
 
   /**
