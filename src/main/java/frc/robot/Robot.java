@@ -87,7 +87,7 @@ private UsbCamera camera2 = CameraServer.startAutomaticCapture(1);
   @Override
   public void autonomousInit() {
     Led_Strips.set(-0.25);
-    
+
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     
     // schedule the autonomous command (example)

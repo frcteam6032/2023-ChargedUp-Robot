@@ -6,7 +6,10 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 
 import java.util.function.DoubleSupplier;
 
+import com.ctre.phoenixpro.signals.System_StateValue;
+
 public class AutoDrive extends CommandBase {
+    private long startingTime;
     private final DrivetrainSubsystem m_drivetrainSubsystem;
 
  
@@ -18,21 +21,20 @@ public class AutoDrive extends CommandBase {
         addRequirements(drivetrainSubsystem);
     }
 
-  
+
+
+
+
+@Override
+public void initialize() {
+     startingTime = System.currentTimeMillis();
+
+}
+
 
     @Override
-    public void execute() {
-        
-       
-            
-        
-        
+    public void execute() {    
      m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.5, .0, 0.0));
-
-                
-                
-        
-        
     }
 
     @Override
@@ -40,5 +42,15 @@ public class AutoDrive extends CommandBase {
         m_drivetrainSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
     }
 
+
+       
+  
+    final int MaxTime = 5000;
+
+    @Override
+    public boolean isFinished() {
+        long elapsedTime =  System.currentTimeMillis() - startingTime;
+       return elapsedTime > MaxTime ? true:false; 
+    }
         
 }
