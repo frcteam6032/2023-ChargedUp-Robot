@@ -23,10 +23,11 @@ public class AutoDrive extends CommandBase {
     @Override
     public void execute() {
         
+       
             
         
-                
-     m_drivetrainSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.2));
+        
+     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.5, .0, 0.0));
 
                 
                 
@@ -38,4 +39,6 @@ public class AutoDrive extends CommandBase {
     public void end(boolean interrupted) {
         m_drivetrainSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
     }
+
+        
 }
