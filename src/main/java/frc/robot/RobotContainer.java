@@ -119,15 +119,10 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-
-    
-
-
-
-
-    
     // An ExampleCommand will run in autonomous
-    return AutoDriveCommand;
+    //return AutoDriveCommand;
+    return (IntakePickupCommand.withTimeout(3)).andThen((IntakeEjectCommand).withTimeout(2)).andThen(AutoDriveCommand);
+
   }
 
   private static double deadband(double value, double deadband) {
