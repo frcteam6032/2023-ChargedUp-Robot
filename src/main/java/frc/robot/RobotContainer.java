@@ -22,10 +22,10 @@ import frc.robot.commands.Intake_Eject;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.ArmLower;
 import frc.robot.commands.ArmRaise;
+import frc.robot.commands.AutoDrive;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
-
 
 
 
@@ -50,6 +50,10 @@ public class RobotContainer {
   private final Command IntakeEjectCommand = new Intake_Eject(m_intake);
   private final Command ArmRaiseCommand = new ArmRaise(m_arm);
   private final Command ArmLowerCommand = new ArmLower(m_arm);
+  private final Command AutoDriveCommand = new AutoDrive(m_drivetrainSubsystem);
+
+  //private final AutoSetWeels = new AutoSetWeels();
+
   
 
   /**
@@ -123,7 +127,7 @@ public class RobotContainer {
 
     
     // An ExampleCommand will run in autonomous
-    return new InstantCommand();
+    return AutoDriveCommand;
   }
 
   private static double deadband(double value, double deadband) {
