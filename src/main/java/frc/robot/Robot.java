@@ -37,13 +37,7 @@ private UsbCamera camera2 = CameraServer.startAutomaticCapture(1);
 
 
 
-  
 
-// Making 2 new camera instances to stream footage
-
-
-  
-//camera.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
 
 
 
