@@ -212,4 +212,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
     m_backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[3].angle.getRadians());
   }
+
+  // Make gyro readings ccessible via drivetrain subsystem methods
+  public double getYaw() {return m_pigeon.getYaw();}
+  public double getPitch() {return m_pigeon.getPitch();}
+  public double getRoll() {return m_pigeon.getRoll();}
+
 }
