@@ -27,6 +27,9 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 
 
@@ -54,7 +57,8 @@ public class RobotContainer {
 
   //private final AutoSetWeels = new AutoSetWeels();
 
-  
+  // A chooser for autonomous commands
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -78,6 +82,16 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+
+    // Add commands to the autonomous command chooser
+    m_chooser.setDefaultOption("Eject Only", IntakeEjectCommand);
+    m_chooser.addOption("Auto Drive", (IntakeEjectCommand.withTimeout(2)).andThen(AutoDriveCommand));
+
+    // Put the chooser on the dashboard
+    Shuffleboard.getTab("Competition")
+      .add("Autonomous Select",m_chooser)
+      .withPosition(6, 3)
+      .withSize(2, 1);
     
   }
 
@@ -121,7 +135,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     //return AutoDriveCommand;
-    return (IntakePickupCommand.withTimeout(3)).andThen((IntakeEjectCommand).withTimeout(2)).andThen(AutoDriveCommand);
+    //return (IntakePickupCommand.withTimeout(3)).andThen((IntakeEjectCommand).withTimeout(2)).andThen(AutoDriveCommand);
+
+    return m_chooser.getSelected();
 
   }
 
