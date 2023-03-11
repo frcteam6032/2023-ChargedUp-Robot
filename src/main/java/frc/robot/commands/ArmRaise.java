@@ -74,7 +74,7 @@ public class ArmRaise extends CommandBase {
                 m_arm.set_speed(0);
                 }
                 else {
-                    m_arm.set_speed(-0.3);
+                    m_arm.set_speed(-0.45);
 
                 }
 
@@ -93,9 +93,10 @@ public class ArmRaise extends CommandBase {
     }
 
     // Returns true when the command should end.
+
     @Override
     public boolean isFinished() {
-        return false;
+    return false;   
     }
     
     @Override
