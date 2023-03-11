@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 
 
@@ -27,19 +29,14 @@ public class Robot extends TimedRobot {
 
   
 
-// Making 2 new camera instances to stream footage
-private UsbCamera camera = CameraServer.startAutomaticCapture(0); 
-//private UsbCamera camera2 = CameraServer.startAutomaticCapture(1); 
+  // Making 2 new camera instances to stream footage
+  private UsbCamera camera = CameraServer.startAutomaticCapture(0); 
 
+  private ShuffleboardTab tab_competition = Shuffleboard.getTab("Competition");
+
+  //private UsbCamera camera2 = CameraServer.startAutomaticCapture(1); 
   
   //camera.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
-
-
-
-
-
-
-
 
 
   private Spark Led_Strips = new Spark(9);
@@ -53,6 +50,10 @@ private UsbCamera camera = CameraServer.startAutomaticCapture(0);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    // Add the USB Camera to the Shuffleboard Tab
+    tab_competition.add(camera).withSize(6, 4);
+
   }
 
   /**

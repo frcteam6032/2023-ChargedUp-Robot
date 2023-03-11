@@ -83,7 +83,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
   public DrivetrainSubsystem() {
-    ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
+    ShuffleboardTab tab_drivetrain = Shuffleboard.getTab("Drivetrain");
+    ShuffleboardTab tab_competition = Shuffleboard.getTab("Competition");
 
     // There are 4 methods you can call to create your swerve modules.
     // The method you use depends on what motors you are using.
@@ -107,7 +108,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     // FIXED Setup motor configuration
     m_frontLeftModule = Mk4SwerveModuleHelper.createNeo(
             // This parameter is optional, but will allow you to see the current state of the module on the dashboard.
-            tab.getLayout("Front Left Module", BuiltInLayouts.kList)
+            tab_drivetrain.getLayout("Front Left Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(0, 0),
             // This can either be STANDARD or FAST depending on your gear configuration
@@ -124,7 +125,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     // We will do the same for the other modules
     m_frontRightModule = Mk4SwerveModuleHelper.createNeo(
-            tab.getLayout("Front Right Module", BuiltInLayouts.kList)
+            tab_drivetrain.getLayout("Front Right Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(2, 0),
             Mk4SwerveModuleHelper.GearRatio.L2,
@@ -135,7 +136,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     );
 
     m_backLeftModule = Mk4SwerveModuleHelper.createNeo(
-            tab.getLayout("Back Left Module", BuiltInLayouts.kList)
+            tab_drivetrain.getLayout("Back Left Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(4, 0),
             Mk4SwerveModuleHelper.GearRatio.L2,
@@ -146,7 +147,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     );
 
     m_backRightModule = Mk4SwerveModuleHelper.createNeo(
-            tab.getLayout("Back Right Module", BuiltInLayouts.kList)
+            tab_drivetrain.getLayout("Back Right Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(6, 0),
             Mk4SwerveModuleHelper.GearRatio.L2,
@@ -156,10 +157,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
             BACK_RIGHT_MODULE_STEER_OFFSET
     );
 
-    // Add the Gyroscope readings to the Shuffleboard DriveTrain Tab
-    ShuffleboardLayout gyro_layout = tab.getLayout("Pigeon 2.0 Gyro", BuiltInLayouts.kList)
-        .withSize(2, 4)
-        .withPosition(8, 0);
+    // Add the Gyroscope readings to the Shuffleboard Competition Tab
+    ShuffleboardLayout gyro_layout = tab_competition.getLayout("Pigeon Gyro", BuiltInLayouts.kList)
+        .withSize(2, 3)
+        .withPosition(6, 0);
     gyro_layout.addNumber("Roll", m_pigeon::getRoll);
     gyro_layout.addNumber("Pitch", m_pigeon::getPitch);
     gyro_layout.addNumber("Yaw", m_pigeon::getYaw);
@@ -211,4 +212,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
     m_backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[3].angle.getRadians());
   }
+
+  // Make gyro readings ccessible via drivetrain subsystem methods
+  public double getYaw() {return m_pigeon.getYaw();}
+  public double getPitch() {return m_pigeon.getPitch();}
+  public double getRoll() {return m_pigeon.getRoll();}
+
 }
