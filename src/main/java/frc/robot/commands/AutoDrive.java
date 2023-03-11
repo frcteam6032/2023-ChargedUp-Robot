@@ -4,10 +4,6 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-import java.util.function.DoubleSupplier;
-
-import com.ctre.phoenixpro.signals.System_StateValue;
-
 public class AutoDrive extends CommandBase {
     private long startingTime;
     private final DrivetrainSubsystem m_drivetrainSubsystem;
