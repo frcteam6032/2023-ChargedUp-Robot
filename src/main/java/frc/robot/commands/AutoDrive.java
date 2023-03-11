@@ -34,7 +34,7 @@ public void initialize() {
 
     @Override
     public void execute() {    
-     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.5, .0, 0.0));
+     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.6, .0, 0.0));
     }
 
     @Override
@@ -45,11 +45,11 @@ public void initialize() {
 
        
   
-    final int MaxTime = 5000;
+    private final int MaxTime = 5000;
 
     @Override
     public boolean isFinished() {
-        long elapsedTime =  System.currentTimeMillis() - startingTime;
+         long elapsedTime =  System.currentTimeMillis() - startingTime;
        return elapsedTime > MaxTime ? true:false; 
     }
         
