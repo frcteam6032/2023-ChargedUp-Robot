@@ -54,6 +54,7 @@ public class RobotContainer {
   private final Command AutoArmRaiseCommand = new AutoArmRaise(m_arm);
    private final Command AutoArmLowerCommand = new AutoArmLower(m_arm);
    private final Command AutoEjectCommand2 = new AutoEject(m_intake);
+   private final Command AutoEjectCommand3= new AutoEject(m_intake);
   private final Command AutoArmRaiseCommand2 = new AutoArmRaise(m_arm);
    private final Command AutoArmLowerCommand2 = new AutoArmLower(m_arm);
 
@@ -93,7 +94,8 @@ public class RobotContainer {
 
    m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(4)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
    m_chooser.addOption("Full Auto", (AutoArmRaiseCommand.withTimeout(4)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand));
-
+    m_chooser.addOption("Eject Only", AutoEjectCommand3);
+//AutoEjectCommand3
     // Put the chooser on the dashboard
      Shuffleboard.getTab("Competition")
       .add("Auto Chooser",m_chooser)
