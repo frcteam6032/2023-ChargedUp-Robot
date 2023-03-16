@@ -27,10 +27,26 @@ public void initialize() {
 
 }
 
+private int MaxTime = 9000;
+   
+@Override
+    // If the yaw is greater than 1
+    public void execute() {   
+        long elapsedTime = System.currentTimeMillis() - startingTime;
 
-    @Override
-    public void execute() {    
-     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.65, .0, 0.0));
+        if (elapsedTime < 3000) {
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.9, 0.0, 0.0));
+        }
+         else if (m_drivetrainSubsystem.getPitch() > 1 && elapsedTime < 7000) {
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.9, 0.0, 0.0));
+         }
+         else if (m_drivetrainSubsystem.getPitch() < 0 && elapsedTime < 7000) {
+     m_drivetrainSubsystem.drive(new ChassisSpeeds(0.2, .0, 0.0));
+         }
+         else if (m_drivetrainSubsystem.getPitch() == 0 && elapsedTime < 7000) {
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(0, .0, 0.0));
+            MaxTime = 0;
+         }
     }
 
     @Override
@@ -41,12 +57,12 @@ public void initialize() {
 
        
   
-    private final int MaxTime = 6000;
 
     @Override
     public boolean isFinished() {
-         long elapsedTime =  System.currentTimeMillis() - startingTime;
-       return elapsedTime > MaxTime ? true:false; 
+        long elapsedTime2 = System.currentTimeMillis() - startingTime;
+
+       return elapsedTime2 > MaxTime ? true:false; 
     }
         
 }
