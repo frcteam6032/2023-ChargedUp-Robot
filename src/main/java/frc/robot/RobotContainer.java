@@ -91,8 +91,7 @@ public class RobotContainer {
 
    // m_chooser.setDefaultOption("Full auto", (AutoEjectCommand).andThen(AutoDriveCommand));
 
-   m_chooser.addOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(4)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
-
+   m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(4)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
    m_chooser.addOption("Full Auto", (AutoArmRaiseCommand.withTimeout(4)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand));
 
     // Put the chooser on the dashboard
