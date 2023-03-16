@@ -45,7 +45,7 @@ private int MaxTime = 9000;
          }
          else if (Math.abs(m_drivetrainSubsystem.getPitch()) <= AngleThreshold) {
             m_drivetrainSubsystem.drive(new ChassisSpeeds(0, .0, 0.0));
-            MaxTime = 0;
+           // MaxTime = 0;
          }
          else {
             m_drivetrainSubsystem.drive(new ChassisSpeeds(0, .0, 0.0));
