@@ -37,7 +37,7 @@ public final class Mk4SwerveModuleHelper {
     private static SteerControllerFactory<?, NeoSteerConfiguration<CanCoderAbsoluteConfiguration>> getNeoSteerFactory(Mk4ModuleConfiguration configuration) {
         return new NeoSteerControllerFactoryBuilder()
                 .withVoltageCompensation(configuration.getNominalVoltage())
-                .withPidConstants(1.0, 0.011, 0.1) // I was 0.01
+                .withPidConstants(1.0, 0.0099, 0.1) // I was 0.01
                 .withCurrentLimit(configuration.getSteerCurrentLimit())
                 .build(new CanCoderFactoryBuilder()
                         .withReadingUpdatePeriod(100)
