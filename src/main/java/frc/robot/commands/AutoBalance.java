@@ -34,7 +34,7 @@ private int MaxTime = 9000;
     public void execute() {   
         long elapsedTime = System.currentTimeMillis() - startingTime;
         final double AngleThreshold = 3;
-        if (elapsedTime < 3000) {
+        if (elapsedTime < 3000 && Math.abs(m_drivetrainSubsystem.getPitch()) <= AngleThreshold) {
             m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.9, 0.0, 0.0));
         }
          else if (m_drivetrainSubsystem.getPitch() > AngleThreshold) {
