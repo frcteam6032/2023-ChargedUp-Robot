@@ -118,7 +118,7 @@ public class RobotContainer {
     // Put the chooser on the dashboard
      Shuffleboard.getTab("Competition")
       .add("Auto Chooser",m_chooser)
-      .withPosition(6, 3)
+      .withPosition(6, 2)
       .withSize(2, 1);
 
   } 
