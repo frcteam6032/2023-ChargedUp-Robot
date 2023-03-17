@@ -51,10 +51,17 @@ public class ArmSubsystem extends SubsystemBase {
         ShuffleboardLayout encoder_layout = tab_competition.getLayout("Arm Encoder", BuiltInLayouts.kList)
             .withSize(2, 3)
             .withPosition(8, 0);
-        encoder_layout.addNumber("Absolute", m_DutyCycleEncoder::getAbsolutePosition);
-        encoder_layout.addNumber("Relative", m_DutyCycleEncoder::get);
-        encoder_layout.addNumber("Absolute*360", () -> m_DutyCycleEncoder.getAbsolutePosition() * 360);
-        encoder_layout.addNumber("Relative*90", () -> m_DutyCycleEncoder.get() * 90);
+        //encoder_layout.addNumber("Absolute", m_DutyCycleEncoder::getAbsolutePosition);
+        //encoder_layout.addNumber("Relative", m_DutyCycleEncoder::get);
+        //encoder_layout.addNumber("Absolute*360", () -> m_DutyCycleEncoder.getAbsolutePosition() * 360);
+        encoder_layout.addNumber("Relative*90", () -> m_DutyCycleEncoder.get() * 90)
+            .withPosition(0, 0);  //withPosition doesn't work in layout?
+        encoder_layout.addNumber("Scaled 0 to 100", () -> (79-(m_DutyCycleEncoder.get() * 90))/1.44)
+            .withPosition(0, 1);  //withPosition doesn't work in layout?
+        encoder_layout.addBoolean("Is at max height", () -> (m_DutyCycleEncoder.get() * 90 <= -65))
+            .withPosition(0, 2);  //withPosition doesn't work in layout?
+        encoder_layout.addBoolean("Is at min height", () -> (m_DutyCycleEncoder.get() * 90 >= 79))
+            .withPosition(0, 3);  //withPosition doesn't work in layout?
 
     }
 

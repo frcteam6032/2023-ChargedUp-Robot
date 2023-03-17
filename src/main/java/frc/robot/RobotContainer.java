@@ -22,6 +22,7 @@ import frc.robot.commands.ArmLower;
 import frc.robot.commands.ArmRaise;
 import frc.robot.commands.AutoArmLower;
 import frc.robot.commands.AutoArmRaise;
+import frc.robot.commands.AutoBalance;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.AutoEject;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -51,14 +52,22 @@ public class RobotContainer {
   private final Command ArmLowerCommand = new ArmLower(m_arm);
   private final Command AutoDriveCommand = new AutoDrive(m_drivetrainSubsystem);
   private final Command AutoDriveCommand2 = new AutoDrive(m_drivetrainSubsystem);
+  private final Command AutoDriveCommand3 = new AutoDrive(m_drivetrainSubsystem);
 
   private final Command AutoEjectCommand = new AutoEject(m_intake);
   private final Command AutoArmRaiseCommand = new AutoArmRaise(m_arm);
    private final Command AutoArmLowerCommand = new AutoArmLower(m_arm);
    private final Command AutoEjectCommand2 = new AutoEject(m_intake);
    private final Command AutoEjectCommand3= new AutoEject(m_intake);
+   private final Command AutoEjectCommand4= new AutoEject(m_intake);
+
   private final Command AutoArmRaiseCommand2 = new AutoArmRaise(m_arm);
    private final Command AutoArmLowerCommand2 = new AutoArmLower(m_arm);
+   private final Command AutoArmRaiseCommand3 = new AutoArmRaise(m_arm);
+   private final Command AutoArmLowerCommand3 = new AutoArmLower(m_arm);
+   private final Command AutoBalanceCommand = new AutoBalance(m_drivetrainSubsystem);
+   private final Command AutoBalanceCommand2 = new AutoBalance(m_drivetrainSubsystem);
+
 
 
   //private final AutoSetWeels = new AutoSetWeels();
@@ -95,15 +104,21 @@ public class RobotContainer {
    // m_chooser.setDefaultOption("Full auto", (AutoEjectCommand).andThen(AutoDriveCommand));
 
    m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(4)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
-   m_chooser.addOption("Full Auto", (AutoArmRaiseCommand.withTimeout(4)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand));
-    m_chooser.addOption("Eject Only", AutoEjectCommand3);
-    m_chooser.addOption("Drive Only", AutoDriveCommand2);
+   m_chooser.addOption("Full Auto Balance", (AutoArmRaiseCommand3.withTimeout(4)).andThen(AutoEjectCommand3).andThen(AutoArmLowerCommand3.withTimeout(3.5)).andThen(AutoBalanceCommand)); //AutoDriveCommand
+   m_chooser.addOption("Full Auto Drive Far", (AutoArmRaiseCommand.withTimeout(4)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand)); //AutoDriveCommand
+ 
+   m_chooser.addOption("Eject Only", AutoEjectCommand3);
+   m_chooser.addOption("Eject n Drive", AutoEjectCommand4.andThen(AutoDriveCommand3));
+
+    m_chooser.addOption("Drive Only Far", AutoDriveCommand2); // AutoDriveCommand2
+    m_chooser.addOption("Drive Only Balance", AutoBalanceCommand2);
+
 
 //AutoEjectCommand3
     // Put the chooser on the dashboard
      Shuffleboard.getTab("Competition")
       .add("Auto Chooser",m_chooser)
-      .withPosition(6, 3)
+      .withPosition(6, 2)
       .withSize(2, 1);
 
   } 
