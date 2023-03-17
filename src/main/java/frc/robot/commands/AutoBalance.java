@@ -47,10 +47,10 @@ private int MaxTime = 9000;  //Force robot to exit this command after this much 
             m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.9, 0.0, 0.0));
         }
          else if (m_drivetrainSubsystem.getPitch() > AngleThreshold) {
-            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.9, 0.0, 0.0));
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.5, 0.0, 0.0));
          }
          else if (m_drivetrainSubsystem.getPitch() < -1 * AngleThreshold) {
-            m_drivetrainSubsystem.drive(new ChassisSpeeds(0.9, .0, 0.0));
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(0.5, .0, 0.0));
          }
          else if (Math.abs(m_drivetrainSubsystem.getPitch()) <= AngleThreshold) {
             m_drivetrainSubsystem.drive(new ChassisSpeeds(0, .0, 0.0));
