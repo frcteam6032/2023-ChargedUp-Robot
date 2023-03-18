@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+//import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
   //camera.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
 
 
-  private Spark Led_Strips = new Spark(9);
+  //private Spark Led_Strips = new Spark(9);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    Led_Strips.set(0.77);
+    //Led_Strips.set(0.77);
   }
 
   @Override
@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    Led_Strips.set(.93);
+    //Led_Strips.set(.93);
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     
@@ -106,7 +106,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
 
-    Led_Strips.set(0.93);
+    //Led_Strips.set(0.93);
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
