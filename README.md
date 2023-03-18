@@ -1,6 +1,9 @@
 ## FRC Team 6032 Swerve
-This project is based on the SDS Swerve Drive Template, imported into the WPILib2023.  
-Still has deprecation warnings, but builds and deploys OK. 
+This project is based on the SDS Swerve Drive Template, imported into the WPILib2023.
+
+Custom swerve-lib to adjust PID, but returned to nominal values.
+
+Final code as run at last qualifiying match @ MVR on 18-Mar-2023.
 
 ## Original SDS Template Instructions:
 ### Configuring the code for your robot
