@@ -4,10 +4,6 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-import java.util.function.DoubleSupplier;
-
-import com.ctre.phoenixpro.signals.System_StateValue;
-
 public class AutoDrive extends CommandBase {
     private long startingTime;
     private final DrivetrainSubsystem m_drivetrainSubsystem;
@@ -34,7 +30,7 @@ public void initialize() {
 
     @Override
     public void execute() {    
-     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.6, .0, 0.0));
+     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.7, .0, 0.0));
     }
 
     @Override
@@ -45,7 +41,7 @@ public void initialize() {
 
        
   
-    private final int MaxTime = 5000;
+    private final int MaxTime = 8000;
 
     @Override
     public boolean isFinished() {

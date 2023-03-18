@@ -59,7 +59,7 @@ public class AutoEject extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_intake.set_speed(0.56);
+        m_intake.set_speed(0.53);
     }
 
     // Called once the command ends or is interrupted.

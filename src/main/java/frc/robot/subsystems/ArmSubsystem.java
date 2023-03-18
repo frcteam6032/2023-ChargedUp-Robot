@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 //import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 //import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
@@ -51,10 +52,13 @@ public class ArmSubsystem extends SubsystemBase {
         ShuffleboardLayout encoder_layout = tab_competition.getLayout("Arm Encoder", BuiltInLayouts.kList)
             .withSize(2, 3)
             .withPosition(8, 0);
-        encoder_layout.addNumber("Absolute", m_DutyCycleEncoder::getAbsolutePosition);
-        encoder_layout.addNumber("Relative", m_DutyCycleEncoder::get);
-        encoder_layout.addNumber("Absolute*360", () -> m_DutyCycleEncoder.getAbsolutePosition() * 360);
+        //encoder_layout.addNumber("Absolute", m_DutyCycleEncoder::getAbsolutePosition);
+        //encoder_layout.addNumber("Relative", m_DutyCycleEncoder::get);
+        //encoder_layout.addNumber("Absolute*360", () -> m_DutyCycleEncoder.getAbsolutePosition() * 360);
+        encoder_layout.addNumber("Scaled 0 to 100", () -> (79-(m_DutyCycleEncoder.get() * 90)) / 1.44).withWidget(BuiltInWidgets.kDial);
         encoder_layout.addNumber("Relative*90", () -> m_DutyCycleEncoder.get() * 90);
+        encoder_layout.addBoolean("Is at max height", () -> (m_DutyCycleEncoder.get() * 90 <= -65));
+        encoder_layout.addBoolean("Is at min height", () -> (m_DutyCycleEncoder.get() * 90 >= 79));
 
     }
 
