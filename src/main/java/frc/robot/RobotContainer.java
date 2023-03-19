@@ -191,6 +191,9 @@ public class RobotContainer {
     return value;
   }
 
+  public void setGyroscope(double angle) {
+    m_drivetrainSubsystem.setGyroscope(angle);
+  }
 
 
 

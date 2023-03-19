@@ -90,6 +90,7 @@ public class Robot extends TimedRobot {
     //Led_Strips.set(.93);
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_robotContainer.setGyroscope(180.0);  // Every auto play starts with gyro reversed
     
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
