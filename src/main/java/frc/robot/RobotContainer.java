@@ -27,8 +27,8 @@ import frc.robot.commands.AutoBalance;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.AutoEject;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 
 
@@ -123,17 +123,17 @@ public class RobotContainer {
         .withSize(2, 1);
 
     // Add a pit control option that doesn't need a controller
-    //ShuffleboardTab tab_pit = Shuffleboard.getTab("Pit Tests");
+    ShuffleboardTab tab_pit = Shuffleboard.getTab("Pit Tests");
     // SmartDashboard is the only "tab" that works with running commands.
-    SmartDashboard.putData("Arm Lower", new ArmLower(m_arm));
-    SmartDashboard.putData("Arm Raise", new ArmRaise(m_arm));
-    SmartDashboard.putData("Intake Eject", new Intake_Eject(m_intake));
-    SmartDashboard.putData("Intake Pickup", new Intake_Pickup(m_intake));
+    tab_pit.add("Arm Lower", new ArmLower(m_arm));
+    tab_pit.add("Arm Raise", new ArmRaise(m_arm));
+    tab_pit.add("Intake Eject", new Intake_Eject(m_intake));
+    tab_pit.add("Intake Pickup", new Intake_Pickup(m_intake));
     // TODO: Add commands which test the swerve modules in multiple directions.
-    SmartDashboard.putData("Forward", new InstantCommand());
-    SmartDashboard.putData("Left", new InstantCommand());
-    SmartDashboard.putData("Right", new InstantCommand());
-    SmartDashboard.putData("Reverse", new InstantCommand());
+    tab_pit.add("Forward", new InstantCommand());
+    tab_pit.add("Left", new InstantCommand());
+    tab_pit.add("Right", new InstantCommand());
+    tab_pit.add("Reverse", new InstantCommand());
 
   } 
 
