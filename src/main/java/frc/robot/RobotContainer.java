@@ -39,176 +39,166 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
+    // The robot's subsystems and commands are defined here...
+    private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
-  private final XboxController m_controller = new XboxController(0);
-  private final XboxController m_controller2 = new XboxController(1);
-  public final IntakeSubsystem m_intake = new IntakeSubsystem();
-  public final ArmSubsystem m_arm = new ArmSubsystem();
-
-
-  private final Command IntakePickupCommand = new Intake_Pickup(m_intake);
-  private final Command IntakeEjectCommand = new Intake_Eject(m_intake);
-  private final Command ArmRaiseCommand = new ArmRaise(m_arm);
-  private final Command ArmLowerCommand = new ArmLower(m_arm);
-  private final Command AutoDriveCommand = new AutoDrive(m_drivetrainSubsystem);
-  private final Command AutoDriveCommand2 = new AutoDrive(m_drivetrainSubsystem);
-  private final Command AutoDriveCommand3 = new AutoDrive(m_drivetrainSubsystem);
-
-  private final Command AutoEjectCommand = new AutoEject(m_intake);
-  private final Command AutoArmRaiseCommand = new AutoArmRaise(m_arm);
-   private final Command AutoArmLowerCommand = new AutoArmLower(m_arm);
-   private final Command AutoEjectCommand2 = new AutoEject(m_intake);
-   private final Command AutoEjectCommand3= new AutoEject(m_intake);
-   private final Command AutoEjectCommand4= new AutoEject(m_intake);
-
-  private final Command AutoArmRaiseCommand2 = new AutoArmRaise(m_arm);
-   private final Command AutoArmLowerCommand2 = new AutoArmLower(m_arm);
-   private final Command AutoArmRaiseCommand3 = new AutoArmRaise(m_arm);
-   private final Command AutoArmLowerCommand3 = new AutoArmLower(m_arm);
-   private final Command AutoBalanceCommand = new AutoBalance(m_drivetrainSubsystem);
-   private final Command AutoBalanceCommand2 = new AutoBalance(m_drivetrainSubsystem);
+    private final XboxController m_controller = new XboxController(0);
+    private final XboxController m_controller2 = new XboxController(1);
+    public final IntakeSubsystem m_intake = new IntakeSubsystem();
+    public final ArmSubsystem m_arm = new ArmSubsystem();
 
 
+    private final Command IntakePickupCommand = new Intake_Pickup(m_intake);
+    private final Command IntakeEjectCommand = new Intake_Eject(m_intake);
+    private final Command ArmRaiseCommand = new ArmRaise(m_arm);
+    private final Command ArmLowerCommand = new ArmLower(m_arm);
+    private final Command AutoDriveCommand = new AutoDrive(m_drivetrainSubsystem);
+    private final Command AutoDriveCommand2 = new AutoDrive(m_drivetrainSubsystem);
+    private final Command AutoDriveCommand3 = new AutoDrive(m_drivetrainSubsystem);
 
-  //private final AutoSetWeels = new AutoSetWeels();
+    private final Command AutoEjectCommand = new AutoEject(m_intake);
+    private final Command AutoArmRaiseCommand = new AutoArmRaise(m_arm);
+    private final Command AutoArmLowerCommand = new AutoArmLower(m_arm);
+    private final Command AutoEjectCommand2 = new AutoEject(m_intake);
+    private final Command AutoEjectCommand3= new AutoEject(m_intake);
+    private final Command AutoEjectCommand4= new AutoEject(m_intake);
 
-  // A chooser for autonomous commands
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+    private final Command AutoArmRaiseCommand2 = new AutoArmRaise(m_arm);
+    private final Command AutoArmLowerCommand2 = new AutoArmLower(m_arm);
+    private final Command AutoArmRaiseCommand3 = new AutoArmRaise(m_arm);
+    private final Command AutoArmLowerCommand3 = new AutoArmLower(m_arm);
+    private final Command AutoBalanceCommand = new AutoBalance(m_drivetrainSubsystem);
+    private final Command AutoBalanceCommand2 = new AutoBalance(m_drivetrainSubsystem);
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
-  public RobotContainer() {
-    // Set up the default command for the drivetrain.
-    // The controls are for field-oriented driving:
+    // A chooser for autonomous commands
+    SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-    // Originally use right stick FWD/BACK/Left/Right, Left Stick Pivot
-    // Now use left stick FWD/BACK/Left/Right, Right Stick Pivot
-  
-    m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
-            m_drivetrainSubsystem,
-            // Forwards And Back
-            () -> -modifyAxis(m_controller.getRightY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-            // Left & Right
-            () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-            // Pivot
-            () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-    ));
+    /**
+     * The container for the robot. Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+        // Set up the default command for the drivetrain.
+        // The controls are for field-oriented driving:
 
-    // Configure the button bindings
-    configureButtonBindings();
+        // Originally use right stick FWD/BACK/Left/Right, Left Stick Pivot
     
-    // Add commands to the autonomous command chooser
-  //  m_chooser.addOption("Eject only", (AutoArmRaiseCommand.withTimeout(4)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)));
+        m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
+                m_drivetrainSubsystem,
+                // Forwards And Back
+                () -> -modifyAxis(m_controller.getRightY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+                // Left & Right
+                () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+                // Pivot
+                () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+        ));
 
-   // m_chooser.setDefaultOption("Full auto", (AutoEjectCommand).andThen(AutoDriveCommand));
-
-   m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(4)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
-   m_chooser.addOption("Full Auto Balance", (AutoArmRaiseCommand3.withTimeout(4)).andThen(AutoEjectCommand3).andThen(AutoArmLowerCommand3.withTimeout(3.5)).andThen(AutoBalanceCommand)); //AutoDriveCommand
-   m_chooser.addOption("Full Auto Drive Far", (AutoArmRaiseCommand.withTimeout(4)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand)); //AutoDriveCommand
- 
-   m_chooser.addOption("Eject Only", AutoEjectCommand3);
-   m_chooser.addOption("Eject n Drive", AutoEjectCommand4.andThen(AutoDriveCommand3));
-
-    m_chooser.addOption("Drive Only Far", AutoDriveCommand2); // AutoDriveCommand2
-    m_chooser.addOption("Drive Only Balance", AutoBalanceCommand2);
-
-
-    // Put the chooser on the dashboard
-    Shuffleboard.getTab("Competition")
-        .add("Auto Chooser",m_chooser)
-        .withPosition(6, 3)
-        .withSize(2, 1);
-
-    // Add a pit control option that doesn't need a controller
-    ShuffleboardTab tab_pit = Shuffleboard.getTab("Pit Tests");
-    // SmartDashboard is the only "tab" that works with running commands.
-    tab_pit.add("Arm Lower", new ArmLower(m_arm));
-    tab_pit.add("Arm Raise", new ArmRaise(m_arm));
-    tab_pit.add("Intake Eject", new Intake_Eject(m_intake));
-    tab_pit.add("Intake Pickup", new Intake_Pickup(m_intake));
-    // TODO: Add commands which test the swerve modules in multiple directions.
-    tab_pit.add("Forward", new InstantCommand());
-    tab_pit.add("Left", new InstantCommand());
-    tab_pit.add("Right", new InstantCommand());
-    tab_pit.add("Reverse", new InstantCommand());
-
-  } 
-
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-    // X button zeros the gyroscope
-    new Trigger(m_controller::getBButton)
-            // No requirements because we don't need to interrupt anything
-            
-            .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
-            
-    // Lambda expression are function that return a vale, calls a different function, or can call a method. They do not accept conditionals such as "if" statements unless braces are used. example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); if you are farmilar with arrow functions in other languages (SUch as Javascript) which have a syntax like so: param => expression (You can also use braces to to more complex operations). Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
+        // Configure the button bindings
+        configureButtonBindings();
+        
+        // Add commands to the autonomous command chooser
+        m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(4)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
+        m_chooser.addOption("Full Auto Balance", (AutoArmRaiseCommand3.withTimeout(4)).andThen(AutoEjectCommand3).andThen(AutoArmLowerCommand3.withTimeout(3.5)).andThen(AutoBalanceCommand)); //AutoDriveCommand
+        m_chooser.addOption("Full Auto Drive Far", (AutoArmRaiseCommand.withTimeout(4)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand)); //AutoDriveCommand
     
-    // Set Button for Intake Pickup
-    new Trigger(m_controller2::getXButton).whileTrue(IntakePickupCommand);
-    //getXButton
-    // Set Button for Intake Pickup
-    new Trigger(m_controller2::getBButton).whileTrue(IntakeEjectCommand);
+        m_chooser.addOption("Eject Only", AutoEjectCommand3);
+        m_chooser.addOption("Eject n Drive", AutoEjectCommand4.andThen(AutoDriveCommand3));
+
+        m_chooser.addOption("Drive Only Far", AutoDriveCommand2); // AutoDriveCommand2
+        m_chooser.addOption("Drive Only Balance", AutoBalanceCommand2);
 
 
- 
+        // Put the chooser on the dashboard
+        Shuffleboard.getTab("Competition")
+            .add("Auto Chooser",m_chooser)
+            .withPosition(6, 3)
+            .withSize(2, 1);
 
-     new Trigger(m_controller2::getRightBumper).whileTrue(ArmRaiseCommand);
+        // Add a pit control option that doesn't need a controller
+        ShuffleboardTab tab_pit = Shuffleboard.getTab("Pit Tests");
+        tab_pit.add("Arm Lower", new ArmLower(m_arm));
+        tab_pit.add("Arm Raise", new ArmRaise(m_arm));
+        tab_pit.add("Intake Eject", new Intake_Eject(m_intake));
+        tab_pit.add("Intake Pickup", new Intake_Pickup(m_intake));
+        // TODO: Add commands which test the swerve modules in multiple directions.
+        // Either a button for each direction, or a complex command which moves in each direction automatically
+        tab_pit.add("Forward", new InstantCommand());
+        tab_pit.add("Left", new InstantCommand());
+        tab_pit.add("Right", new InstantCommand());
+        tab_pit.add("Reverse", new InstantCommand());
 
-     new Trigger(m_controller2::getLeftBumper).whileTrue(ArmLowerCommand);
-
-    
-
-  }
-
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    //return AutoDriveCommand;
-    //return (IntakePickupCommand.withTimeout(3)).andThen((IntakeEjectCommand).withTimeout(2)).andThen(AutoDriveCommand);
-
-    return m_chooser.getSelected();
-
-  }
-
-  private static double deadband(double value, double deadband) {
-    if (Math.abs(value) > deadband) {
-      if (value > 0.0) {
-        return (value - deadband) / (1.0 - deadband);
-      } else {
-        return (value + deadband) / (1.0 - deadband);
-      }
-    } else {
-      return 0.0;
     }
-  }
 
-  private static double modifyAxis(double value) {
-    // Deadband
-    value = deadband(value, 0.05);
+    /**
+     * Use this method to define your button->command mappings. Buttons can be created by
+     * instantiating a {@link GenericHID} or one of its subclasses ({@link
+     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+     */
+    private void configureButtonBindings() {
+        // X button zeros the gyroscope
+        new Trigger(m_controller::getBButton)
+                // No requirements because we don't need to interrupt anything
+                
+                .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
+                
+        /*  Lambda expression are function that return a vale, calls a different function, or can call a method. 
+        hey do not accept conditionals such as "if" statements unless braces are used. 
+        example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); 
+        if you are farmilar with arrow functions in other languages (SUch as Javascript) 
+        which have a syntax like so: param => expression (You can also use braces to to more complex operations). 
+        Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
+        */
 
-    // Square the axis
-    value = Math.copySign(value * value, value);
+        // Set Button for Intake Pickup
+        new Trigger(m_controller2::getXButton).whileTrue(IntakePickupCommand);
+        
+        // Set Button for Intake Eject
+        new Trigger(m_controller2::getBButton).whileTrue(IntakeEjectCommand);
+    
+        // Set Button for Arm Raise
+        new Trigger(m_controller2::getRightBumper).whileTrue(ArmRaiseCommand);
 
-    return value;
-  }
+        // Set Button for Arm Lower
+        new Trigger(m_controller2::getLeftBumper).whileTrue(ArmLowerCommand);
+    }
 
-  public void setGyroscope(double angle) {
-    m_drivetrainSubsystem.setGyroscope(angle);
-  }
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        // An ExampleCommand will run in autonomous
+        //return AutoDriveCommand;
+        //return (IntakePickupCommand.withTimeout(3)).andThen((IntakeEjectCommand).withTimeout(2)).andThen(AutoDriveCommand);
 
+        return m_chooser.getSelected();
 
+    }
 
+    private static double deadband(double value, double deadband) {
+        if (Math.abs(value) > deadband) {
+        if (value > 0.0) {
+            return (value - deadband) / (1.0 - deadband);
+        } else {
+            return (value + deadband) / (1.0 - deadband);
+        }
+        } else {
+        return 0.0;
+        }
+    }
+
+    private static double modifyAxis(double value) {
+        // Deadband
+        value = deadband(value, 0.05);
+
+        // Square the axis
+        value = Math.copySign(value * value, value);
+
+        return value;
+    }
+
+    public void setGyroscope(double angle) {
+        m_drivetrainSubsystem.setGyroscope(angle);
+    }
 }
