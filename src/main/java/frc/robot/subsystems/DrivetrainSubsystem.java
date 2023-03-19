@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
@@ -158,11 +159,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
       
         // Add the Gyroscope readings to the Shuffleboard Competition Tab
         ShuffleboardLayout gyro_layout = tab_competition.getLayout("Pigeon Gyro", BuiltInLayouts.kList)
-            .withSize(2, 2)
+            .withSize(2, 3)
             .withPosition(6, 0);
-        gyro_layout.addNumber("Roll", m_pigeon::getRoll);
+        //gyro_layout.addNumber("Roll", m_pigeon::getRoll);
         gyro_layout.addNumber("Pitch", m_pigeon::getPitch);
-        gyro_layout.addNumber("Yaw", m_pigeon::getYaw);
+        gyro_layout.addNumber("Heading", m_pigeon::getYaw).withWidget(BuiltInWidgets.kGyro);
     }
 
     /**
