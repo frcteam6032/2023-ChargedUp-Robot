@@ -1,9 +1,20 @@
 ## FRC Team 6032 Swerve
-This project is based on the SDS Swerve Drive Template, imported into the WPILib2023.
+This project is based on the Democat3457 SDS swerve-lib fork:
+https://github.com/democat3457/swerve-lib
 
-Custom swerve-lib to adjust PID, but returned to nominal values.
+## Democat's initilization instructions
+https://www.chiefdelphi.com/t/democat-sds-swervelib-with-cancoders/425355/14
+1. In code, set the offsets to 0 and deploy.
+1. Power cycle the robot.
+1. Open Phoenix Tuner.
+1. Rotate the modules until the bevel gears on the modules face the same way (for us it’s to the “left” of the robot). The wheels should be parallel to the side of the robot.
+1. Use Self-Test Snapshot on the cancoders to get the reported absolute position of each cancoder. In code, put the absolute position into the offset degrees for each module.
+1. Deploy.
+1. Power cycle the robot.
+1. Zero the gyro and make sure the robot drives forward!
 
-Final code as run at last qualifiying match @ MVR on 18-Mar-2023.
+
+
 
 ## Original SDS Template Instructions:
 ### Configuring the code for your robot
@@ -11,9 +22,9 @@ Final code as run at last qualifiying match @ MVR on 18-Mar-2023.
 2. Read through and configure `frc.robot.Constants`. Parts of the code that need to be configured for your specific
 robot setup are marked with comments starting with `FIXME`.
 > Don't configure the `*_MODULE_STEER_OFFSET` constants yet. Those are configured after code is deployed.
-4. Read through and configure `frc.robot.subsystems.DrivetrainSubsystem`. Parts of the code that need to be configured
+3. Read through and configure `frc.robot.subsystems.DrivetrainSubsystem`. Parts of the code that need to be configured
 for your specific robot setup are marked with comments starting with `FIXME`.
-5. At this point deploy the code. If it endlessly crashes at startup make sure your CAN IDs are properly set and make
+4. At this point deploy the code. If it endlessly crashes at startup make sure your CAN IDs are properly set and make
 sure you are using the proper swerve module configurations for your hardware.
 
 ### Setting up module offsets
