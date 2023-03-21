@@ -30,7 +30,7 @@ public void initialize() {
 
     @Override
     public void execute() {    
-     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.7, .0, 0.0));
+     m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.8, .0, 0.0));
     }
 
     @Override
