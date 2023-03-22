@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
@@ -82,6 +83,9 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     //Led_Strips.set(-0.25);
     
+    // Call the drive command so the ~5-10 sec periodic encoder reset is called.
+    m_robotContainer.m_drivetrainSubsystem.drive(
+        new ChassisSpeeds(0, 0, 0));
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
