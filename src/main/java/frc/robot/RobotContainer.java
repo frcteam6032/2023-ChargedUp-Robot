@@ -40,7 +40,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
  */
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
-    private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
+    public final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
     private final XboxController m_controller = new XboxController(0);
     private final XboxController m_controller2 = new XboxController(1);

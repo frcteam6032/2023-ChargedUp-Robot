@@ -17,6 +17,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -138,6 +139,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
             .withSteerEncoderPort(BACK_RIGHT_MODULE_STEER_ENCODER)
             .withSteerOffset(BACK_RIGHT_MODULE_STEER_OFFSET)
             .build();
+
+        // Set each steer motor encoder equal to the CANCoder absolute after a brief pause
+        //https://www.chiefdelphi.com/t/democat-sds-swervelib-with-cancoders/425355/23?page=2
+        Timer.delay(1.0);
+        m_frontLeftModule.resetToAbsolute();
+        m_frontRightModule.resetToAbsolute();
+        m_backLeftModule.resetToAbsolute();
+        m_backRightModule.resetToAbsolute();
 
         // Burn all the SparkMAX Configs to Flash (in case of power drop out)
         CANSparkMax motor_fld = (CANSparkMax) m_frontLeftModule.getDriveMotor();
