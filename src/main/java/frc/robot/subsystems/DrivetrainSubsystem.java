@@ -172,7 +172,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
             .withPosition(6, 0);
         //gyro_layout.addNumber("Roll", m_pigeon::getRoll);
         gyro_layout.addNumber("Pitch", m_pigeon::getPitch);
-        gyro_layout.addNumber("Heading", m_pigeon::getYaw).withWidget(BuiltInWidgets.kGyro);
+        gyro_layout.addNumber("Heading", () -> -1*m_pigeon.getYaw()).withWidget(BuiltInWidgets.kGyro);
     }
 
     /**
