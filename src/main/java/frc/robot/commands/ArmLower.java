@@ -67,7 +67,7 @@ public class ArmLower extends CommandBase {
             m_arm.set_speed(0);
             }
             else {
-                m_arm.set_speed(0.40);
+                m_arm.set_speed(0.50);
 
             }
         

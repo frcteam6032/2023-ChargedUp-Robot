@@ -74,7 +74,7 @@ public class AutoArmRaise extends CommandBase {
                 m_arm.set_speed(0);
                 }
                 else {
-                    m_arm.set_speed(-0.45);
+                    m_arm.set_speed(-0.6);
 
                 }
 

@@ -40,20 +40,20 @@ private int MaxTime = 13000;  //Force robot to exit this command after this much
         // ELSE Stop Moving.
                 
         final double AngleThreshold = 10;
-        final double BalanceAngleThreshold = 8;  // Threshold (in degrees) to be considered level
+        final double BalanceAngleThreshold = 7;  // Threshold (in degrees) to be considered level
         
         if ((elapsedTime < 3000) && (Math.abs(m_drivetrainSubsystem.getPitch()) <= 1.5*AngleThreshold)) {
             // Uses 1.5*AngleThreshold to ensure that it doesn't stop immediately at Threshold then call itself level.
             // (i.e. Driving backward right until it tips to 3.0 degrees, then stopping)
             m_drivetrainSubsystem.drive(new ChassisSpeeds(-1.0, 0.0, 0.0));
         }
-         else if (m_drivetrainSubsystem.getPitch() > BalanceAngleThreshold && elapsedTime > 3450) {
-            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.41, 0.0, 0.0));
+         else if (m_drivetrainSubsystem.getPitch() > BalanceAngleThreshold) {
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.4, 0.0, 0.0));
          }
-         else if (m_drivetrainSubsystem.getPitch() < -1 * BalanceAngleThreshold && elapsedTime > 3450) {
-            m_drivetrainSubsystem.drive(new ChassisSpeeds(0.41, .0, 0.0));
+         else if (m_drivetrainSubsystem.getPitch() < -1 * BalanceAngleThreshold) {
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(0.4, .0, 0.0));
          }
-         else if (Math.abs(m_drivetrainSubsystem.getPitch()) <= BalanceAngleThreshold && elapsedTime > 3450) {
+         else if (Math.abs(m_drivetrainSubsystem.getPitch()) <= BalanceAngleThreshold) {
             m_drivetrainSubsystem.drive(new ChassisSpeeds(0, .0, 0.0));
            // MaxTime = 0;
          }
