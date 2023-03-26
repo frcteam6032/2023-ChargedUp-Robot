@@ -1,19 +1,10 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-//import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DefaultDriveCommand;
-
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.Intake_Pickup;
@@ -29,6 +20,12 @@ import frc.robot.commands.AutoEject;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.commands.PitLeftDrive;
+import frc.robot.commands.PitRightDrive;
+import frc.robot.commands.FwrdDrive;
+
+
+
 
 
 
@@ -60,9 +57,9 @@ public class RobotContainer {
     private final Command AutoArmRaiseCommand = new AutoArmRaise(m_arm);
     private final Command AutoArmLowerCommand = new AutoArmLower(m_arm);
     private final Command AutoEjectCommand2 = new AutoEject(m_intake);
-    private final Command AutoEjectCommand3= new AutoEject(m_intake);
-    private final Command AutoEjectCommand4= new AutoEject(m_intake);
-    private final Command AutoEjectCommand5= new AutoEject(m_intake);
+    private final Command AutoEjectCommand3 = new AutoEject(m_intake);
+    private final Command AutoEjectCommand4 = new AutoEject(m_intake);
+    private final Command AutoEjectCommand5 = new AutoEject(m_intake);
 
 
     private final Command AutoArmRaiseCommand2 = new AutoArmRaise(m_arm);
@@ -73,7 +70,7 @@ public class RobotContainer {
     private final Command AutoBalanceCommand2 = new AutoBalance(m_drivetrainSubsystem);
 
     // A chooser for autonomous commands
-    SendableChooser<Command> m_chooser = new SendableChooser<>();
+    SendableChooser < Command > m_chooser = new SendableChooser < > ();
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -83,37 +80,35 @@ public class RobotContainer {
         // The controls are for field-oriented driving:
 
         // Originally use right stick FWD/BACK/Left/Right, Left Stick Pivot
-    
+
         m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
-                m_drivetrainSubsystem,
-                // Forwards And Back
-                () -> -modifyAxis(m_controller.getRightY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-                // Left & Right
-                () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-                // Pivot
-                () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            m_drivetrainSubsystem,
+            // Forwards And Back
+            () -> -modifyAxis(m_controller.getRightY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            // Left & Right
+            () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            // Pivot
+            () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
         ));
 
         // Configure the button bindings
         configureButtonBindings();
-    
+
         // Add commands to the autonomous command chooser
         m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(3)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
         m_chooser.addOption("Full Auto Balance", (AutoArmRaiseCommand3.withTimeout(3)).andThen(AutoEjectCommand3).andThen(AutoArmLowerCommand3.withTimeout(3.5)).andThen(AutoBalanceCommand)); //AutoDriveCommand
         m_chooser.addOption("Full Auto Drive Far", (AutoArmRaiseCommand.withTimeout(3)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand)); //AutoDriveCommand
- 
         m_chooser.addOption("Eject Only", AutoEjectCommand5);
         m_chooser.addOption("Eject n Drive", AutoEjectCommand4.andThen(AutoDriveCommand3));
-
         m_chooser.addOption("Drive Only Far", AutoDriveCommand2); // AutoDriveCommand2
         m_chooser.addOption("Drive Only Balance", AutoBalanceCommand2);
 
-
         // Put the chooser on the dashboard
         Shuffleboard.getTab("Competition")
-            .add("Auto Chooser",m_chooser)
+            .add("Auto Chooser", m_chooser)
             .withPosition(6, 3)
             .withSize(2, 1);
+
 
         // Add a pit control option that doesn't need a controller
         ShuffleboardTab tab_pit = Shuffleboard.getTab("Pit Tests");
@@ -125,13 +120,12 @@ public class RobotContainer {
             .withSize(2, 1).withPosition(2, 0);
         tab_pit.add("Auto Drive", new AutoDrive(m_drivetrainSubsystem))
             .withSize(2, 1).withPosition(4, 0);
-        
-        // TODO: Add commands which test the swerve modules in multiple directions.
+
         // Either a button for each direction, or a complex command which moves in each direction automatically
-        //tab_pit.add("Forward", new InstantCommand());
-        //tab_pit.add("Left", new InstantCommand());
-        //tab_pit.add("Right", new InstantCommand());
-        //tab_pit.add("Reverse", new InstantCommand());
+        tab_pit.add("Forward", new FwrdDrive(m_drivetrainSubsystem));
+        tab_pit.add("Left", new PitLeftDrive(m_drivetrainSubsystem));
+        tab_pit.add("Right", new PitRightDrive(m_drivetrainSubsystem));
+        tab_pit.add("Reverse", new AutoDrive(m_drivetrainSubsystem));
 
     }
 
@@ -144,24 +138,16 @@ public class RobotContainer {
     private void configureButtonBindings() {
         // X button zeros the gyroscope
         new Trigger(m_controller::getBButton)
-                // No requirements because we don't need to interrupt anything
-                
-                .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
-                
-        /*  Lambda expression are function that return a vale, calls a different function, or can call a method. 
-        hey do not accept conditionals such as "if" statements unless braces are used. 
-        example: parameter -> expression; or () -> Sysyem.out.println("Hello, World"); 
-        if you are farmilar with arrow functions in other languages (SUch as Javascript) 
-        which have a syntax like so: param => expression (You can also use braces to to more complex operations). 
-        Overall, a lambda expression is a function that takes a paramater and an expression and can call, return, etc something. 
-        */
+            // No requirements because we don't need to interrupt anything
+
+            .onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.zeroGyroscope()));
 
         // Set Button for Intake Pickup
         new Trigger(m_controller2::getXButton).whileTrue(IntakePickupCommand);
-        
+
         // Set Button for Intake Eject
         new Trigger(m_controller2::getBButton).whileTrue(IntakeEjectCommand);
-    
+
         // Set Button for Arm Raise
         new Trigger(m_controller2::getRightBumper).whileTrue(ArmRaiseCommand);
 
@@ -176,22 +162,18 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        //return AutoDriveCommand;
-        //return (IntakePickupCommand.withTimeout(3)).andThen((IntakeEjectCommand).withTimeout(2)).andThen(AutoDriveCommand);
-
         return m_chooser.getSelected();
-
     }
 
     private static double deadband(double value, double deadband) {
         if (Math.abs(value) > deadband) {
-        if (value > 0.0) {
-            return (value - deadband) / (1.0 - deadband);
+            if (value > 0.0) {
+                return (value - deadband) / (1.0 - deadband);
+            } else {
+                return (value + deadband) / (1.0 - deadband);
+            }
         } else {
-            return (value + deadband) / (1.0 - deadband);
-        }
-        } else {
-        return 0.0;
+            return 0.0;
         }
     }
 

@@ -4,13 +4,13 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class AutoDrive extends CommandBase {
+public class PitLeftDrive extends CommandBase {
     private long startingTime;
     private final DrivetrainSubsystem m_drivetrainSubsystem;
 
 
 
-    public AutoDrive(DrivetrainSubsystem drivetrainSubsystem) {
+    public PitLeftDrive(DrivetrainSubsystem drivetrainSubsystem) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
 
 
@@ -30,7 +30,7 @@ public class AutoDrive extends CommandBase {
 
     @Override
     public void execute() {
-        m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.8, .0, 0.0));
+        m_drivetrainSubsystem.drive(new ChassisSpeeds(0, -0.4, 0.0));
     }
 
     @Override

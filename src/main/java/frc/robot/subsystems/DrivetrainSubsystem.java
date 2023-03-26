@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.sensors.Pigeon2;
 import com.revrobotics.CANSparkMax;
 import com.swervedrivespecialties.swervelib.MkModuleConfiguration;
-//import com.ctre.phoenix.sensors.PigeonIMU;
 import com.swervedrivespecialties.swervelib.MkSwerveModuleBuilder;
 import com.swervedrivespecialties.swervelib.MotorType;
 import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
@@ -48,8 +47,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
      * This is a measure of how fast the robot should be able to drive in a straight line.
      */
     public static final double MAX_VELOCITY_METERS_PER_SECOND = 5880.0 / 60.0 *
-            SdsModuleConfigurations.MK4_L2.getDriveReduction() *
-            SdsModuleConfigurations.MK4_L2.getWheelDiameter() * Math.PI;
+        SdsModuleConfigurations.MK4_L2.getDriveReduction() *
+        SdsModuleConfigurations.MK4_L2.getWheelDiameter() * Math.PI;
     /**
      * The maximum angular velocity of the robot in radians per second.
      * <p>
@@ -57,17 +56,17 @@ public class DrivetrainSubsystem extends SubsystemBase {
      */
     // Here we calculate the theoretical maximum angular velocity. You can also replace this with a measured amount.
     public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = MAX_VELOCITY_METERS_PER_SECOND /
-            Math.hypot(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0);
+        Math.hypot(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0);
 
     private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
-            // Front left
-            new Translation2d(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0),
-            // Front right
-            new Translation2d(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0),
-            // Back left
-            new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0),
-            // Back right
-            new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0)
+        // Front left
+        new Translation2d(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0),
+        // Front right
+        new Translation2d(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0),
+        // Back left
+        new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0),
+        // Back right
+        new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0)
     );
 
     // By default we use a Pigeon for our gyroscope. But if you use another gyroscope, like a NavX, you can change this.
@@ -96,10 +95,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
         moduleConfig.setSteerCurrentLimit(20.0);
 
         // Democat swerve-lib module construction
-        m_frontLeftModule= new MkSwerveModuleBuilder(moduleConfig)
+        m_frontLeftModule = new MkSwerveModuleBuilder(moduleConfig)
             .withLayout(tab_drivetrain.getLayout("Front Left Module", BuiltInLayouts.kList)
-                            .withSize(2, 4)
-                            .withPosition(0, 0))
+                .withSize(2, 4)
+                .withPosition(0, 0))
             .withGearRatio(SdsModuleConfigurations.MK4_L2)
             .withDriveMotor(MotorType.NEO, FRONT_LEFT_MODULE_DRIVE_MOTOR)
             .withSteerMotor(MotorType.NEO, FRONT_LEFT_MODULE_STEER_MOTOR)
@@ -107,10 +106,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
             .withSteerOffset(FRONT_LEFT_MODULE_STEER_OFFSET)
             .build();
 
-        m_frontRightModule= new MkSwerveModuleBuilder(moduleConfig)
+        m_frontRightModule = new MkSwerveModuleBuilder(moduleConfig)
             .withLayout(tab_drivetrain.getLayout("Front Right Module", BuiltInLayouts.kList)
-                            .withSize(2, 4)
-                            .withPosition(2, 0))
+                .withSize(2, 4)
+                .withPosition(2, 0))
             .withGearRatio(SdsModuleConfigurations.MK4_L2)
             .withDriveMotor(MotorType.NEO, FRONT_RIGHT_MODULE_DRIVE_MOTOR)
             .withSteerMotor(MotorType.NEO, FRONT_RIGHT_MODULE_STEER_MOTOR)
@@ -118,10 +117,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
             .withSteerOffset(FRONT_RIGHT_MODULE_STEER_OFFSET)
             .build();
 
-        m_backLeftModule= new MkSwerveModuleBuilder(moduleConfig)
+        m_backLeftModule = new MkSwerveModuleBuilder(moduleConfig)
             .withLayout(tab_drivetrain.getLayout("Back Left Module", BuiltInLayouts.kList)
-                            .withSize(2, 4)
-                            .withPosition(4, 0))
+                .withSize(2, 4)
+                .withPosition(4, 0))
             .withGearRatio(SdsModuleConfigurations.MK4_L2)
             .withDriveMotor(MotorType.NEO, BACK_LEFT_MODULE_DRIVE_MOTOR)
             .withSteerMotor(MotorType.NEO, BACK_LEFT_MODULE_STEER_MOTOR)
@@ -129,10 +128,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
             .withSteerOffset(BACK_LEFT_MODULE_STEER_OFFSET)
             .build();
 
-        m_backRightModule= new MkSwerveModuleBuilder(moduleConfig)
+        m_backRightModule = new MkSwerveModuleBuilder(moduleConfig)
             .withLayout(tab_drivetrain.getLayout("Back Right Module", BuiltInLayouts.kList)
-                            .withSize(2, 4)
-                            .withPosition(6, 0))
+                .withSize(2, 4)
+                .withPosition(6, 0))
             .withGearRatio(SdsModuleConfigurations.MK4_L2)
             .withDriveMotor(MotorType.NEO, BACK_RIGHT_MODULE_DRIVE_MOTOR)
             .withSteerMotor(MotorType.NEO, BACK_RIGHT_MODULE_STEER_MOTOR)
@@ -165,14 +164,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
         motor_bls.burnFlash();
         motor_brd.burnFlash();
         motor_brs.burnFlash();
-      
+
         // Add the Gyroscope readings to the Shuffleboard Competition Tab
         ShuffleboardLayout gyro_layout = tab_competition.getLayout("Pigeon Gyro", BuiltInLayouts.kList)
             .withSize(2, 3)
             .withPosition(6, 0);
         //gyro_layout.addNumber("Roll", m_pigeon::getRoll);
         gyro_layout.addNumber("Pitch", m_pigeon::getPitch);
-        gyro_layout.addNumber("Heading", () -> -1*m_pigeon.getYaw()).withWidget(BuiltInWidgets.kGyro);
+        gyro_layout.addNumber("Heading", () -> -1 * m_pigeon.getYaw()).withWidget(BuiltInWidgets.kGyro);
     }
 
     /**
@@ -208,8 +207,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
     }
 
     // Make gyro readings ccessible via drivetrain subsystem methods
-    public double getYaw() {return m_pigeon.getYaw();}
-    public double getPitch() {return m_pigeon.getPitch();}
-    public double getRoll() {return m_pigeon.getRoll();}
+    public double getYaw() {
+        return m_pigeon.getYaw();
+    }
+    public double getPitch() {
+        return m_pigeon.getPitch();
+    }
+    public double getRoll() {
+        return m_pigeon.getRoll();
+    }
 
 }
