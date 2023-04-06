@@ -15,6 +15,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;
 
+import static frc.robot.Constants.*;
+
+
 public class ArmLower extends CommandBase {
 
     private final ArmSubsystem m_arm;
@@ -35,7 +38,7 @@ public class ArmLower extends CommandBase {
     @Override
     public void execute() {
 
-        if (m_arm.getAngle() >= 79) {
+        if (m_arm.getAngle() >= ARM_LOWER_LIMIT) {
             m_arm.set_speed(0);
         } else {
             m_arm.set_speed(0.50);

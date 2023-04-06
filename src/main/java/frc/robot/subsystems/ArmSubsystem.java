@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import static frc.robot.Constants.*;
+
 public class ArmSubsystem extends SubsystemBase {
 
     private CANSparkMax motorController3;
@@ -41,13 +43,14 @@ public class ArmSubsystem extends SubsystemBase {
         ShuffleboardTab tab_competition = Shuffleboard.getTab("Competition");
 
         ShuffleboardLayout encoder_layout = tab_competition.getLayout("Arm Encoder", BuiltInLayouts.kList)
-            .withSize(2, 3)
+            .withSize(2, 4)
             .withPosition(8, 0);
 
-        encoder_layout.addNumber("Scaled 0 to 100", () -> (79 - (m_DutyCycleEncoder.get() * 90)) / 1.44).withWidget(BuiltInWidgets.kDial);
+        encoder_layout.addNumber("Scaled 0 to 100", () -> (ARM_LOWER_LIMIT - (m_DutyCycleEncoder.get() * 90)) / 1.44).withWidget(BuiltInWidgets.kDial);
         encoder_layout.addNumber("Relative*90", () -> m_DutyCycleEncoder.get() * 90);
-        encoder_layout.addBoolean("Is at max height", () -> (m_DutyCycleEncoder.get() * 90 <= -65));
-        encoder_layout.addBoolean("Is at min height", () -> (m_DutyCycleEncoder.get() * 90 >= 79));
+        encoder_layout.addNumber("Position Offset", () -> m_DutyCycleEncoder.getPositionOffset());
+        encoder_layout.addBoolean("Is at max height", () -> (m_DutyCycleEncoder.get() * 90 <= ARM_UPPER_LIMIT));
+        encoder_layout.addBoolean("Is at min height", () -> (m_DutyCycleEncoder.get() * 90 >= ARM_LOWER_LIMIT));
 
     }
 
@@ -61,7 +64,12 @@ public class ArmSubsystem extends SubsystemBase {
     }
 
     public void reset() {
-        m_DutyCycleEncoder.reset();
+        //m_DutyCycleEncoder.reset();
+        if (m_DutyCycleEncoder.getPositionOffset() == 1.0) {
+            m_DutyCycleEncoder.setPositionOffset(0);
+        } else {
+            m_DutyCycleEncoder.setPositionOffset(1);
+        }
     }
 
     @Override

@@ -55,6 +55,9 @@ public final class Constants {
     
     
     
-    public static final int RIGHT_ARM_SPARKMAX_CAN_ID = 14; // FIXED Set back right steer encoder ID
-    public static final int LEFT_ARM_SPARKMAX_CAN_ID = 15; // FIXED Set back right steer encoder ID
+    public static final int RIGHT_ARM_SPARKMAX_CAN_ID = 14; 
+    public static final int LEFT_ARM_SPARKMAX_CAN_ID = 15;
+
+    public static final double ARM_UPPER_LIMIT = -58; //-65 to -58
+    public static final double ARM_LOWER_LIMIT = 86; // 79 to 86 
 }

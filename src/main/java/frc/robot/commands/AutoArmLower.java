@@ -15,6 +15,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;
 
+import static frc.robot.Constants.*;
+
+
 public class AutoArmLower extends CommandBase {
 
     private final ArmSubsystem m_arm;
@@ -34,7 +37,7 @@ public class AutoArmLower extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (m_arm.getAngle() >= 79) {
+        if (m_arm.getAngle() >= ARM_LOWER_LIMIT) {
             m_arm.set_speed(0);
         } else {
             m_arm.set_speed(0.6);
