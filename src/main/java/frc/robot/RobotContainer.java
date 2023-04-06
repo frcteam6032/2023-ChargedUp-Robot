@@ -155,7 +155,7 @@ public class RobotContainer {
         // Set Button for Arm Lower
         new Trigger(m_controller2::getLeftBumper).whileTrue(ArmLowerCommand);
         
-        new Trigger(m_controller2::getYButton).onTrue(Commands.runOnce(() -> m_arm.reset()));
+        new Trigger(m_controller2::getStartButton).onTrue(Commands.runOnce(() -> m_arm.reset()));
     }
 
     /**
