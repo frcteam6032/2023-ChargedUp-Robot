@@ -60,6 +60,10 @@ public class ArmSubsystem extends SubsystemBase {
         return m_DutyCycleEncoder.get() * 90;
     }
 
+    public void reset() {
+        m_DutyCycleEncoder.reset();
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
