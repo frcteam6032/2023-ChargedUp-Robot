@@ -39,17 +39,17 @@ public class AutoBalance extends CommandBase {
         // ELSE IF angle is level THEN stop moving
         // ELSE Stop Moving.
 
-        final double AngleThreshold = 10;
+        final double AngleThreshold = 9;
         final double BalanceAngleThreshold = 7; // Threshold (in degrees) to be considered level
 
-        if ((elapsedTime < 3000) && (Math.abs(m_drivetrainSubsystem.getPitch()) <= 1.5 * AngleThreshold)) {
+        if ((elapsedTime < 3000) && (Math.abs(m_drivetrainSubsystem.getPitch()) <= AngleThreshold)) {
             // Uses 1.5*AngleThreshold to ensure that it doesn't stop immediately at Threshold then call itself level.
             // (i.e. Driving backward right until it tips to 3.0 degrees, then stopping)
-            m_drivetrainSubsystem.drive(new ChassisSpeeds(-1.0, 0.0, 0.0));
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(-1.7, 0.0, 0.0));
         } else if (m_drivetrainSubsystem.getPitch() > BalanceAngleThreshold) {
-            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.4, 0.0, 0.0));
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(-0.40, 0.0, 0.0));
         } else if (m_drivetrainSubsystem.getPitch() < -1 * BalanceAngleThreshold) {
-            m_drivetrainSubsystem.drive(new ChassisSpeeds(0.4, .0, 0.0));
+            m_drivetrainSubsystem.drive(new ChassisSpeeds(0.40, .0, 0.0));
         } else if (Math.abs(m_drivetrainSubsystem.getPitch()) <= BalanceAngleThreshold) {
             m_drivetrainSubsystem.drive(new ChassisSpeeds(0, .0, 0.0));
             // MaxTime = 0;
