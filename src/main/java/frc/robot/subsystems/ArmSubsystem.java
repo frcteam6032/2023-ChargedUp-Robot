@@ -46,7 +46,7 @@ public class ArmSubsystem extends SubsystemBase {
             .withSize(2, 4)
             .withPosition(8, 0);
 
-        encoder_layout.addNumber("Scaled 0 to 100", () -> (ARM_LOWER_LIMIT - (m_DutyCycleEncoder.get() * 90)) / 1.44).withWidget(BuiltInWidgets.kDial);
+        encoder_layout.addNumber("Scaled 0 to 100", () -> (ARM_LOWER_LIMIT - (m_DutyCycleEncoder.get() * 90)) / (ARM_TRAVEL/100)).withWidget(BuiltInWidgets.kDial);
         encoder_layout.addNumber("Relative*90", () -> m_DutyCycleEncoder.get() * 90);
         encoder_layout.addNumber("Position Offset", () -> m_DutyCycleEncoder.getPositionOffset());
         encoder_layout.addBoolean("Is at max height", () -> (m_DutyCycleEncoder.get() * 90 <= ARM_UPPER_LIMIT));
