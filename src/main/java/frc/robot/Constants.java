@@ -58,8 +58,10 @@ public final class Constants {
     public static final int RIGHT_ARM_SPARKMAX_CAN_ID = 14; 
     public static final int LEFT_ARM_SPARKMAX_CAN_ID = 15;
 
-    public static final double ARM_UPPER_LIMIT = -65; //-65 to -58
-    public static final double ARM_LOWER_LIMIT = 79;
-    
-    public static final double ARM_TRAVEL = ARM_LOWER_LIMIT - ARM_UPPER_LIMIT;// 79 to 86 
+    //public static final double ARM_UPPER_LIMIT = -65; //-65 to -58
+    public static final double ARM_LOWER_LIMIT = 69;
+    public static final double ARM_UPPER_LIMIT = ARM_LOWER_LIMIT - 144;
+
+
+    public static final double ARM_TRAVEL = ARM_LOWER_LIMIT - ARM_UPPER_LIMIT;
 }
