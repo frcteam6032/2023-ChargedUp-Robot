@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -12,6 +13,7 @@ import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.DriverStation;
 
 
 
@@ -27,7 +29,7 @@ public class Robot extends TimedRobot {
     private RobotContainer m_robotContainer;
 
 
-
+    public final Spark LEDS = new Spark(9);
 
     // Making 2 new camera instances to stream footage
     private UsbCamera camera = CameraServer.startAutomaticCapture(0);
@@ -46,6 +48,8 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
+       
+
         m_robotContainer = new RobotContainer();
 
         // Add the USB Camera to the Shuffleboard Tab
@@ -88,7 +92,17 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
       
+        if (DriverStation.getAlliance() == DriverStation.Alliance.Blue) {
+            LEDS.set(0.85);
+        }
+        else if (DriverStation.getAlliance() == DriverStation.Alliance.Red) {
+            LEDS.set(0.61);
 
+        }
+        else {
+            LEDS.set(0.75);
+        }
+        
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
         m_robotContainer.setGyroscope(180.0); // Every auto play starts with gyro reversed
 
