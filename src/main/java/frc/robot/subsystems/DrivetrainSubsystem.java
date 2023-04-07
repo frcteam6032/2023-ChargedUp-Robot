@@ -191,6 +191,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
         return Rotation2d.fromDegrees(m_pigeon.getYaw());
     }
 
+    public void resetWheels() {
+        m_frontLeftModule.resetToAbsolute();
+        m_frontRightModule.resetToAbsolute();
+        m_backLeftModule.resetToAbsolute();
+        m_backRightModule.resetToAbsolute();
+    }
+
     public void drive(ChassisSpeeds chassisSpeeds) {
         m_chassisSpeeds = chassisSpeeds;
     }

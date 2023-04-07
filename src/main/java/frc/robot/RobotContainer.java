@@ -156,6 +156,8 @@ public class RobotContainer {
         new Trigger(m_controller2::getLeftBumper).whileTrue(ArmLowerCommand);
         
         new Trigger(m_controller2::getStartButton).onTrue(Commands.runOnce(() -> m_arm.reset()));
+
+        new Trigger(m_controller::getStartButton).onTrue(Commands.runOnce(() -> m_drivetrainSubsystem.resetWheels()));
     }
 
     /**
