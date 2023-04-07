@@ -96,9 +96,9 @@ public class RobotContainer {
 
 
         // Add commands to the autonomous command chooser
-        m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(3)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(3.5)));
+        m_chooser.setDefaultOption("No drive Auto", (AutoArmRaiseCommand2.withTimeout(2)).andThen(AutoEjectCommand2).andThen(AutoArmLowerCommand2.withTimeout(1.5)));
         m_chooser.addOption("Full Auto Balance", (AutoArmRaiseCommand3.withTimeout(2)).andThen(AutoEjectCommand3).andThen(AutoArmLowerCommand3.withTimeout(1.5)).andThen(AutoBalanceCommand)); //AutoDriveCommand
-        m_chooser.addOption("Full Auto Drive Far", (AutoArmRaiseCommand.withTimeout(3)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(3.5)).andThen(AutoDriveCommand)); //AutoDriveCommand
+        m_chooser.addOption("Full Auto Drive Far", (AutoArmRaiseCommand.withTimeout(2)).andThen(AutoEjectCommand).andThen(AutoArmLowerCommand.withTimeout(1.5)).andThen(AutoDriveCommand)); //AutoDriveCommand
         m_chooser.addOption("Eject Only", AutoEjectCommand5);
         m_chooser.addOption("Eject n Drive", AutoEjectCommand4.andThen(AutoDriveCommand3));
         m_chooser.addOption("Drive Only Far", AutoDriveCommand2); // AutoDriveCommand2
